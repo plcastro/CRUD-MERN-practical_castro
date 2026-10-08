@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(`${API_BASE}/students`)
+      .get(`${API_BASE}students`)
       .then((res) => {
         setStudents(res.data);
       })
@@ -23,7 +23,7 @@ function App() {
     e.preventDefault();
     console.log(name + " " + course + " " + age + " ");
     axios
-      .post(`${API_BASE}/students`, { name, course, age })
+      .post(`${API_BASE}students`, { name, course, age })
       .then((res) => {
         console.log(res);
         window.location.reload();
@@ -36,7 +36,7 @@ function App() {
     setIsEdit(true);
     setSelectedId(id);
     axios
-      .get(`${API_BASE}/students/${id}`)
+      .get(`${API_BASE}students/${id}`)
       .then((res) => {
         console.log(res.data);
         setName(res.data.name);
@@ -49,7 +49,7 @@ function App() {
   const updateRecord = (e) => {
     e.preventDefault();
     axios
-      .put(`${API_BASE}/students/${selectedId}`, {
+      .put(`${API_BASE}students/${selectedId}`, {
         name,
         course,
         age,
@@ -64,7 +64,7 @@ function App() {
   const handleDelete = (id) => {
     console.log(id);
     axios
-      .delete(`${API_BASE}/students/${id}`)
+      .delete(`${API_BASE}students/${id}`)
       .then((res) => {
         console.log(res.data);
         window.location.reload();
