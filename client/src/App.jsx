@@ -29,7 +29,6 @@ function App() {
         setName();
         setCourse();
         setAge();
-        alert("Student added successfully");
       })
       .catch((err) => console.log(err));
   };
@@ -63,7 +62,6 @@ function App() {
         setCourse();
         setAge();
         setSelectedId();
-        alert("Student updated successfully");
       })
       .catch((err) => console.log(err));
   };
@@ -74,7 +72,6 @@ function App() {
       .delete(`${API_BASE}/students/${id}`)
       .then((res) => {
         window.location.reload();
-        alert("Student deleted successfully");
       })
       .catch((err) => console.log(err));
   };
