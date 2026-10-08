@@ -132,7 +132,7 @@ function App() {
       <h2>Student List</h2>
       {students.map((student, index) => {
         return (
-          <li key={index}>
+          <div key={index}>
             <p>Name: {student.name}</p>
             <p>Course: {student.course}</p>
             <p>Age: {student.age}</p>
@@ -144,7 +144,7 @@ function App() {
                 Delete
               </button>
             </div>
-          </li>
+          </div>
         );
       })}
     </div>
