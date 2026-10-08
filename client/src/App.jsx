@@ -9,6 +9,7 @@ function App() {
   const [course, setCourse] = useState();
   const [isEdit, setIsEdit] = useState(false);
   const [selectedId, setSelectedId] = useState();
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     axios
@@ -26,9 +27,8 @@ function App() {
       .post(`${API_BASE}/students`, { name, course, age })
       .then((res) => {
         console.log(res);
-        console.log("reached");
         window.location.reload();
-        alert("Student added successfully");
+        setMessage("Student added successfully");
       })
       .catch((err) => console.log(err));
   };
@@ -59,6 +59,7 @@ function App() {
       .then((res) => {
         console.log(res.data);
         window.location.reload();
+        setMessage("Student updated successfully");
       })
       .catch((err) => console.log(err));
   };
@@ -70,6 +71,7 @@ function App() {
       .then((res) => {
         console.log(res.data);
         window.location.reload();
+        setMessage("Student deleted successfully");
       })
       .catch((err) => console.log(err));
   };
@@ -114,35 +116,27 @@ function App() {
         <button type="submit">{isEdit ? "Update" : "Add"} Student</button>
         {isEdit ? <button onClick={resetValues}>Cancel</button> : null}
       </form>
-
+      {message && <p>{message}</p>}
       <br />
       <br />
       <h2>Student List</h2>
-      {Array.isArray(students)
-        ? students.map((student, index) => {
-            return (
-              <li key={index}>
-                <p>Name: {student.name}</p>
-                <p>Course: {student.course}</p>
-                <p>Age: {student.age}</p>
-                <div>
-                  <button
-                    type="button"
-                    onClick={() => handleUpdate(student._id)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleDelete(student._id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </li>
-            );
-          })
-        : null}
+      {students.map((student, index) => {
+        return (
+          <li key={index}>
+            <p>Name: {student.name}</p>
+            <p>Course: {student.course}</p>
+            <p>Age: {student.age}</p>
+            <div>
+              <button type="button" onClick={() => handleUpdate(student._id)}>
+                Edit
+              </button>
+              <button type="button" onClick={() => handleDelete(student._id)}>
+                Delete
+              </button>
+            </div>
+          </li>
+        );
+      })}
     </div>
   );
 }
