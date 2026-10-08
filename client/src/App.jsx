@@ -9,6 +9,7 @@ function App() {
   const [course, setCourse] = useState();
   const [isEdit, setIsEdit] = useState(false);
   const [selectedId, setSelectedId] = useState();
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     axios
@@ -29,6 +30,7 @@ function App() {
         setName();
         setCourse();
         setAge();
+        setMessage("Student added successfully");
       })
       .catch((err) => console.log(err));
   };
@@ -62,6 +64,7 @@ function App() {
         setCourse();
         setAge();
         setSelectedId();
+        setMessage("Student updated successfully");
       })
       .catch((err) => console.log(err));
   };
@@ -71,8 +74,8 @@ function App() {
     axios
       .delete(`${API_BASE}/students/${id}`)
       .then((res) => {
-        console.log(res.data);
         window.location.reload();
+        setMessage("Student deleted successfully");
       })
       .catch((err) => console.log(err));
   };
@@ -82,6 +85,7 @@ function App() {
     setCourse();
     setAge();
     setSelectedId();
+    setMessage();
   };
 
   return (
@@ -117,6 +121,7 @@ function App() {
         <button type="submit">{isEdit ? "Update" : "Add"} Student</button>
         {isEdit ? <button onClick={resetValues}>Cancel</button> : null}
       </form>
+      <p>{message}</p>
       <br />
       <br />
       <h2>Student List</h2>
