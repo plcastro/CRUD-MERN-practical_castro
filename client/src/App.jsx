@@ -127,23 +127,31 @@ function App() {
       <br />
       <br />
       <h2>Student List</h2>
-      {students.map((student, index) => {
-        return (
-          <div key={index}>
-            <p>Name: {student.name}</p>
-            <p>Course: {student.course}</p>
-            <p>Age: {student.age}</p>
-            <div>
-              <button type="button" onClick={() => handleUpdate(student._id)}>
-                Edit
-              </button>
-              <button type="button" onClick={() => handleDelete(student._id)}>
-                Delete
-              </button>
-            </div>
-          </div>
-        );
-      })}
+      {Array.isArray(students)
+        ? students.map((student, index) => {
+            return (
+              <div key={index}>
+                <p>Name: {student.name}</p>
+                <p>Course: {student.course}</p>
+                <p>Age: {student.age}</p>
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => handleUpdate(student._id)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(student._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            );
+          })
+        : null}
     </div>
   );
 }
