@@ -26,6 +26,7 @@ function App() {
     axios
       .post(`${API_BASE}/students`, { name, course, age })
       .then((res) => {
+        window.location.reload();
         console.log(res);
         setName();
         setCourse();
@@ -60,6 +61,7 @@ function App() {
       })
       .then((res) => {
         console.log(res.data);
+        window.location.reload();
         setName();
         setCourse();
         setAge();
