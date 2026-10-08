@@ -15,6 +15,7 @@ function App() {
       .get(`${API_BASE}/students`)
       .then((res) => {
         setStudents(res.data);
+        console.log(res);
       })
       .catch((err) => console.log("error: " + err));
   }, []);
@@ -25,7 +26,9 @@ function App() {
       .post(`${API_BASE}/students`, { name, course, age })
       .then((res) => {
         console.log(res);
+        console.log("reached");
         window.location.reload();
+        alert("Student added successfully");
       })
       .catch((err) => console.log(err));
   };

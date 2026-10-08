@@ -22,28 +22,28 @@ app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
-app.get("/students", (req, res) => {
-  Student.find({})
-    .then((students) => res.json(students))
-    .catch((err) => res.json(err));
-});
-
-app.post("/students", (req, res) => {
-  Student.create(req.body)
-    .then((students) => res.json(students))
-    .catch((err) => res.json(err));
-});
-
-app.get("/students/:id", (req, res) => {
-  const id = req.params.id;
-  Student.findById({ _id: id })
+app.get("/students", async (req, res) => {
+  await Student.find({})
     .then((result) => res.json(result))
     .catch((err) => res.json(err));
 });
 
-app.put("/students/:id", (req, res) => {
+app.post("/students", async (req, res) => {
+  await Student.create(req.body)
+    .then((result) => res.json(result))
+    .catch((err) => res.json(err));
+});
+
+app.get("/students/:id", async (req, res) => {
   const id = req.params.id;
-  Student.findByIdAndUpdate(
+  await Student.findById({ _id: id })
+    .then((result) => res.json(result))
+    .catch((err) => res.json(err));
+});
+
+app.put("/students/:id", async (req, res) => {
+  const id = req.params.id;
+  await Student.findByIdAndUpdate(
     { _id: id },
     { name: req.body.name, course: req.body.course, age: req.body.age }
   )
@@ -51,9 +51,9 @@ app.put("/students/:id", (req, res) => {
     .catch((err) => res.json(err));
 });
 
-app.delete("/students/:id", (req, res) => {
+app.delete("/students/:id", async (req, res) => {
   const id = req.params.id;
-  Student.findByIdAndDelete({ _id: id })
+  await Student.findByIdAndDelete({ _id: id })
     .then((result) => res.json(result))
     .catch((err) => res.json(err));
 });
