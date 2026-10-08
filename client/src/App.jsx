@@ -126,7 +126,7 @@ function App() {
         <button type="submit">{isEdit ? "Update" : "Add"} Student</button>
         {isEdit ? <button onClick={resetValues}>Cancel</button> : null}
       </form>
-      {message && <p>{message}</p>}
+      <p>{message}</p>
       <br />
       <br />
       <h2>Student List</h2>
