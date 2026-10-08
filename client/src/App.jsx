@@ -28,6 +28,9 @@ function App() {
       .then((res) => {
         console.log(res);
         window.location.reload();
+        setName();
+        setCourse();
+        setAge();
         setMessage("Student added successfully");
       })
       .catch((err) => console.log(err));
@@ -58,7 +61,10 @@ function App() {
       })
       .then((res) => {
         console.log(res.data);
-        window.location.reload();
+        setName();
+        setCourse();
+        setAge();
+        setSelectedId();
         setMessage("Student updated successfully");
       })
       .catch((err) => console.log(err));
@@ -70,7 +76,10 @@ function App() {
       .delete(`${API_BASE}/students/${id}`)
       .then((res) => {
         console.log(res.data);
-        window.location.reload();
+        setName();
+        setCourse();
+        setAge();
+        setSelectedId();
         setMessage("Student deleted successfully");
       })
       .catch((err) => console.log(err));
@@ -81,6 +90,7 @@ function App() {
     setCourse();
     setAge();
     setSelectedId();
+    setMessage();
   };
 
   return (
