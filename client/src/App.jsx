@@ -71,6 +71,7 @@ function App() {
     axios
       .delete(`${API_BASE}/students/${id}`)
       .then((res) => {
+        console.log(res.data);
         window.location.reload();
       })
       .catch((err) => console.log(err));
