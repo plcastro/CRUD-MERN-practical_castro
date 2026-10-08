@@ -27,7 +27,6 @@ function App() {
       .post(`${API_BASE}/students`, { name, course, age })
       .then((res) => {
         console.log(res);
-        window.location.reload();
         setName();
         setCourse();
         setAge();
